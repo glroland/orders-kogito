@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.glroland.orders.demo;
+package com.glroland.orders.dto;
 
 public class Order implements java.io.Serializable {
 

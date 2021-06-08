@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2020 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.glroland.orders
-unit PersonValidationService
+package com.glroland.orders.service;
 
-import com.glroland.orders.demo.Person;
+import com.glroland.orders.dto.Person;
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStore;
+import org.kie.kogito.rules.RuleUnitData;
 
-rule "Is adult"
-when
-    $person: /persons[age > 18]
-then
-    modify($person) { 
-    	setAdult(true) 
-    };
-end
+public class PersonValidationService implements RuleUnitData {
+    private DataStore<Person> persons = DataSource.createStore();
+
+    public DataStore<Person> getPersons() {
+        return persons;
+    }
+}
