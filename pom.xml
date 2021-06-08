@@ -10,10 +10,10 @@
     <version>2.5.0</version>
   </parent>
 
-  <groupId>org.kie.kogito.examples</groupId>
-  <artifactId>process-springboot-example</artifactId>
-  <name>Kogito Example :: Process and Spring Boot</name>
-  <description>Order management service</description>
+  <groupId>com.glroland.orders</groupId>
+  <artifactId>orders-kogito</artifactId>
+  <name>Order Fulfillment using Kogito</name>
+  <description>Basic order fulfiillment workflow using the Kogito Process Engine</description>
 
   <version>1.0.0</version>
 
