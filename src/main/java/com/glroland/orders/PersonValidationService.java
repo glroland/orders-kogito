@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.examples;
+package com.glroland.orders;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.annotation.EnableKafka;
-import org.springframework.kafka.core.KafkaTemplate;
+import com.glroland.orders.demo.Person;
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStore;
+import org.kie.kogito.rules.RuleUnitData;
 
-@EnableKafka
-@Configuration
-@ConditionalOnClass(KafkaTemplate.class)
-public class KafkaConfig {
+public class PersonValidationService implements RuleUnitData {
+    private DataStore<Person> persons = DataSource.createStore();
+
+    public DataStore<Person> getPersons() {
+        return persons;
+    }
 }

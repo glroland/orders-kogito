@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.examples;
+package com.glroland.orders;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = { "org.kie.kogito.**" })
+@SpringBootApplication(scanBasePackages = { "org.kie.kogito.**", "com.glroland.orders.**" })
 public class DemoApplication {
 
     public static void main(String[] args) {

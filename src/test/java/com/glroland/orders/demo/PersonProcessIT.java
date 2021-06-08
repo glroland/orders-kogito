@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.examples.demo;
+package com.glroland.orders.demo;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.kie.kogito.Model;
 import org.kie.kogito.auth.SecurityPolicy;
-import org.kie.kogito.examples.DemoApplication;
+import com.glroland.orders.DemoApplication;
 import org.kie.kogito.process.Process;
 import org.kie.kogito.process.ProcessInstance;
 import org.kie.kogito.process.WorkItem;

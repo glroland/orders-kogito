@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.examples;
+package com.glroland.orders;
 
-import java.util.Random;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.core.KafkaTemplate;
 
-import org.kie.kogito.examples.demo.Order;
-import org.springframework.stereotype.Component;
-
-@Component
-public class CalculationService {
-
-    private Random random = new Random();
-
-    public Order calculateTotal(Order order) {
-        order.setTotal(random.nextDouble());
-
-        return order;
-    }
+@EnableKafka
+@Configuration
+@ConditionalOnClass(KafkaTemplate.class)
+public class KafkaConfig {
 }

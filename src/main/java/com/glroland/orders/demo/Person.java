@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.examples.demo;
+package com.glroland.orders.demo;
 
 import java.io.Serializable;
 

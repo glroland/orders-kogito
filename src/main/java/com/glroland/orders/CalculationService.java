@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2020 Red Hat, Inc. and/or its affiliates.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.examples
-unit PersonValidationService
+package com.glroland.orders;
 
-import org.kie.kogito.examples.demo.Person;
+import java.util.Random;
 
-rule "Is adult"
-when
-    $person: /persons[age > 18]
-then
-    modify($person) { 
-    	setAdult(true) 
-    };
-end
+import com.glroland.orders.demo.Order;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CalculationService {
+
+    private Random random = new Random();
+
+    public Order calculateTotal(Order order) {
+        order.setTotal(random.nextDouble());
+
+        return order;
+    }
+}
