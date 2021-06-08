@@ -16,17 +16,34 @@
 package com.glroland.orders.service;
 
 import java.util.Random;
-
-import com.glroland.orders.dto.Order;
 import org.springframework.stereotype.Component;
+import com.glroland.orders.dto.IncomingOrder;
+import com.glroland.orders.dto.IncomingOrderLine;
 
 @Component
 public class CalculationService {
 
     private Random random = new Random();
 
-    public Order calculateTotal(Order order) {
-        order.setTotal(random.nextDouble());
+    public IncomingOrder calculateTotal(IncomingOrder order) {
+        double runningTotal = 0;
+
+        if (order.getOrderLines() != null)
+        {
+            for (IncomingOrderLine line : order.getOrderLines()) 
+            {
+                if ((line.getUnitPrice() != null) && (line.getQuantity() != null))
+                {
+                    double unitPrice = line.getUnitPrice();
+                    int quantity = line.getQuantity();
+
+                    double lineTotal = unitPrice * quantity;
+                    runningTotal += lineTotal;
+                }
+            }            
+        }
+
+        order.setTotal(runningTotal);
 
         return order;
     }

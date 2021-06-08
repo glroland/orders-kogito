@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.glroland.orders.dto.Order;
+import com.glroland.orders.dto.IncomingOrder;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -69,7 +69,7 @@ public class OrdersProcessIT {
         Model m = orderProcess.createModel();
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("approver", "john");
-        parameters.put("order", new Order("12345", false, 0.0));
+        parameters.put("order", createDummyOrder());
         m.fromMap(parameters);
 
         ProcessInstance<?> processInstance = orderProcess.createInstance(m);
@@ -78,7 +78,7 @@ public class OrdersProcessIT {
         assertEquals(ProcessInstance.STATE_ACTIVE, processInstance.status());
         Model result = (Model) processInstance.variables();
         assertEquals(2, result.toMap().size());
-        assertTrue(((Order) result.toMap().get("order")).getTotal() > 0);
+        assertTrue(((IncomingOrder) result.toMap().get("order")).getTotal() > 0);
 
         ProcessInstances<? extends Model> orderItemProcesses = orderItemsProcess.instances();
         assertEquals(1, orderItemProcesses.size());
@@ -99,13 +99,21 @@ public class OrdersProcessIT {
         assertEquals(0, orderItemsProcess.instances().size());
     }
 
+    private IncomingOrder createDummyOrder()
+    {
+        IncomingOrder order = new IncomingOrder();
+        order.setOrderNumber("12345");
+        order.setOrderStatus("pending");
+
+        return order;
+    }
     @Test
     public void testOrderProcessWithError() {
         assertNotNull(orderProcess);
 
         Model m = orderProcess.createModel();
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("order", new Order("12345", false, 0.0));
+        parameters.put("order", createDummyOrder());
         m.fromMap(parameters);
 
         ProcessInstance<?> processInstance = orderProcess.createInstance(m);
@@ -116,7 +124,7 @@ public class OrdersProcessIT {
 
         parameters = new HashMap<>();
         parameters.put("approver", "john");
-        parameters.put("order", new Order("12345", false, 0.0));
+        parameters.put("order", createDummyOrder());
         m.fromMap(parameters);
         ((ProcessInstance) processInstance).updateVariables(m);
 
@@ -125,7 +133,7 @@ public class OrdersProcessIT {
 
         Model result = (Model) processInstance.variables();
         assertEquals(2, result.toMap().size());
-        assertTrue(((Order) result.toMap().get("order")).getTotal() > 0);
+        assertTrue(((IncomingOrder) result.toMap().get("order")).getTotal() > 0);
 
         ProcessInstances<? extends Model> orderItemProcesses = orderItemsProcess.instances();
         assertEquals(1, orderItemProcesses.size());
