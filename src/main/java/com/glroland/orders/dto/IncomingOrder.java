@@ -23,7 +23,7 @@ public class IncomingOrder implements java.io.Serializable {
     static final long serialVersionUID = 1L;
 
     private Date orderDate;
-    private String orderNumber;
+    private Long orderNumber;
     private List<IncomingOrderLine> orderLines;
     private String orderStatus;
     private Double total;
@@ -43,11 +43,11 @@ public class IncomingOrder implements java.io.Serializable {
         this.orderDate = orderDate;
     }
 
-    public String getOrderNumber() {
+    public Long getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(Long orderNumber) {
         this.orderNumber = orderNumber;
     }
 

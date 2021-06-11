@@ -102,7 +102,7 @@ public class OrdersProcessIT {
     private IncomingOrder createDummyOrder()
     {
         IncomingOrder order = new IncomingOrder();
-        order.setOrderNumber("12345");
+        order.setOrderNumber(Long.valueOf(12345));
         order.setOrderStatus("pending");
 
         return order;

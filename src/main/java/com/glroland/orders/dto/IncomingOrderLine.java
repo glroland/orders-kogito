@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class IncomingOrderLine implements Serializable {
     
-    private Long orderNumber;
     private Integer lineNumber;
     private String sku;
     private Integer quantity;
@@ -14,12 +13,6 @@ public class IncomingOrderLine implements Serializable {
     private String fulfillmentOrderNumber;
     private String fulfillmentDate;
 
-    public Long getOrderNumber() {
-        return orderNumber;
-    }
-    public void setOrderNumber(Long orderNumber) {
-        this.orderNumber = orderNumber;
-    }
     public Integer getLineNumber() {
         return lineNumber;
     }
