@@ -12,8 +12,10 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     private String sku;
     private Integer quantity;
     private Double unitCost;
+    private Double subtotalCost;
     private Double totalCost;
     private Double shipping;
+    private Double tax;
     private String fulfillmentDate;
     private String paymentMethod;
     private String supplierId;
@@ -112,6 +114,18 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     }
     public void setFulfillmentOrderNumber(String fulfillmentOrderNumber) {
         this.fulfillmentOrderNumber = fulfillmentOrderNumber;
+    }
+    public Double getTax() {
+        return tax;
+    }
+    public void setTax(Double tax) {
+        this.tax = tax;
+    }
+    public Double getSubtotalCost() {
+        return subtotalCost;
+    }
+    public void setSubtotalCost(Double subtotalCost) {
+        this.subtotalCost = subtotalCost;
     }
 
 }
