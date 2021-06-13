@@ -1,9 +1,9 @@
 package com.glroland.orders.dto;
 
-import java.io.Serializable;
+public class IncomingOrderLine extends BaseDTO  implements java.io.Serializable {
 
-public class IncomingOrderLine implements Serializable {
-    
+    static final long serialVersionUID = 1L;
+
     private Integer lineNumber;
     private String sku;
     private Integer quantity;
@@ -61,7 +61,5 @@ public class IncomingOrderLine implements Serializable {
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
-
-
 
 }

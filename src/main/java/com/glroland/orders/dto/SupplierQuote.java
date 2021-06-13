@@ -1,10 +1,11 @@
 package com.glroland.orders.dto;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class SupplierQuoteRequest implements Serializable
+public class SupplierQuote extends BaseDTO implements java.io.Serializable
 {
+    static final long serialVersionUID = 1L;
+
     private Long orderNumber;
     private Integer lineNumber;
     private String supplierType;

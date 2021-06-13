@@ -18,7 +18,7 @@ package com.glroland.orders.dto;
 import java.util.List;
 import java.util.Date;
 
-public class IncomingOrder implements java.io.Serializable {
+public class IncomingOrder extends BaseDTO implements java.io.Serializable {
 
     static final long serialVersionUID = 1L;
 
@@ -29,10 +29,6 @@ public class IncomingOrder implements java.io.Serializable {
     private Double total;
 
     public IncomingOrder() {
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
     }
 
     public Date getOrderDate() {

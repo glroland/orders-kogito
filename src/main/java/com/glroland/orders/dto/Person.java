@@ -15,11 +15,9 @@
  */
 package com.glroland.orders.dto;
 
-import java.io.Serializable;
+public class Person extends BaseDTO implements java.io.Serializable {
 
-public class Person implements Serializable {
-
-    private static final long serialVersionUID = -571683427125356701L;
+    static final long serialVersionUID = 1L;
 
     private String name;
     private int age;

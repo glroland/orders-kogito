@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.glroland.orders.dto.IncomingOrder;
 import com.glroland.orders.dto.IncomingOrderLine;
-import com.glroland.orders.dto.SupplierQuoteRequest;
-import com.glroland.orders.dto.SupplierQuoteRequestList;
+import com.glroland.orders.dto.SupplierQuote;
 import com.glroland.orders.util.Constants;
 
 import org.slf4j.Logger;
@@ -22,7 +21,7 @@ public class OrderSplitService
     @Autowired
     private ProductService productService;
 
-    public List splitForSupplier(IncomingOrder order) 
+    public List<SupplierQuote> splitForSupplier(IncomingOrder order) 
     {
         if (order == null)
         {
@@ -31,7 +30,7 @@ public class OrderSplitService
             throw new RuntimeException(msg);
         }
 
-        ArrayList<SupplierQuoteRequest> requestList = new ArrayList<SupplierQuoteRequest>();
+        ArrayList<SupplierQuote> requestList = new ArrayList<SupplierQuote>();
 
         if (order != null)
         {
@@ -41,7 +40,7 @@ public class OrderSplitService
                 {
                     String supplierType = productService.getSupplierTypeForProduct(line.getSku());
                     
-                    SupplierQuoteRequest request = new SupplierQuoteRequest();
+                    SupplierQuote request = new SupplierQuote();
                     request.setOrderNumber(order.getOrderNumber());
                     request.setLineNumber(line.getLineNumber());
                     request.setSupplierType(supplierType);
@@ -55,5 +54,85 @@ public class OrderSplitService
         }
 
         return requestList;
+    }
+
+    public void joinSupplierQuotes(IncomingOrder order, List supplierRequestsIn)
+    {
+        if (order == null)
+        {
+            String msg = "Incoming order is null";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+        if (supplierRequestsIn == null)
+        {
+            String msg = "Incoming supplier response list is null";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+        
+        List<SupplierQuote> supplierResponses = (List<SupplierQuote>)supplierRequestsIn;
+        if (supplierResponses.size() == 0)
+        {
+            String msg = "Supplier response list is empty";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+
+        for (SupplierQuote supplierResponse : supplierResponses)
+        {
+            IncomingOrderLine orderLine = getMatchingLine(order, supplierResponse);
+            if (orderLine == null)
+            {
+                String msg = "Unable to match supplier response to a line in the order!";
+                log.error(msg);
+                throw new RuntimeException(msg);
+            }
+
+            
+        }
+    } 
+
+    private IncomingOrderLine getMatchingLine(IncomingOrder order, SupplierQuote supplierResponse)
+    {
+        // assuming null checks have already occurred.  we are marked as private
+
+        // perform basic validation
+        if ((order.getOrderNumber() == null) || !order.getOrderNumber().equals(supplierResponse.getOrderNumber()))
+        {
+            String msg = "getMatchingLine - order numbers do not match between order and supplier quote request";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+        if (supplierResponse.getLineNumber() == null)
+        {
+            String msg = "getMatchingLine - supplier request line number is null";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+        if ((order.getOrderLines() == null) || (order.getOrderLines().size() == 0))
+        {
+            String msg = "getMatchingLine - order has no lines but has supplier responses";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+
+        // find the line
+        for (IncomingOrderLine orderLine : order.getOrderLines())
+        {
+            if ((orderLine == null) || (orderLine.getLineNumber() == null))
+            {
+                String msg = "getMatchingLine - order line is null or has no line number";
+                log.error(msg);
+                throw new RuntimeException(msg);
+            }
+                
+            if (orderLine.getLineNumber().equals(supplierResponse.getLineNumber()))
+            {
+                return orderLine;
+            }
+        }
+
+        return null;
     }
 }
