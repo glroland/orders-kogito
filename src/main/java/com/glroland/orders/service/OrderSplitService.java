@@ -55,7 +55,7 @@ public class OrderSplitService
         return requestList;
     }
 
-    public void joinSupplierQuotes(IncomingOrder order, List supplierRequestsIn)
+    public boolean joinSupplierQuotes(IncomingOrder order, List supplierRequestsIn)
     {
         if (order == null)
         {
@@ -67,7 +67,8 @@ public class OrderSplitService
         {
             String msg = "Incoming supplier response list is null";
             log.error(msg);
-            throw new RuntimeException(msg);
+            order.setOrderStatus(Constants.IncomingOrderStatus.ERROR);
+            return false;
         }
         
         List<SupplierQuote> supplierResponses = (List<SupplierQuote>)supplierRequestsIn;
@@ -75,21 +76,32 @@ public class OrderSplitService
         {
             String msg = "Supplier response list is empty";
             log.error(msg);
-            throw new RuntimeException(msg);
+            order.setOrderStatus(Constants.IncomingOrderStatus.ERROR);
+            return false;
         }
 
         for (SupplierQuote supplierResponse : supplierResponses)
         {
+            if (!Constants.SupplierRequestStatus.APPROVED.equals(supplierResponse.getStatus()))
+            {
+                String msg = "Supplier response is not approved.  Cannot proceed with quote! Status=" + supplierResponse.getStatus();
+                log.error(msg);
+                order.setOrderStatus(Constants.IncomingOrderStatus.ERROR);
+                return false;
+            }
+
             IncomingOrderLine orderLine = getMatchingLine(order, supplierResponse);
             if (orderLine == null)
             {
                 String msg = "Unable to match supplier response to a line in the order!";
                 log.error(msg);
-                throw new RuntimeException(msg);
+                order.setOrderStatus(Constants.IncomingOrderStatus.ERROR);
+                return false;
             }
-
-            
         }
+
+        order.setOrderStatus(Constants.IncomingOrderStatus.READY);
+        return true;
     } 
 
     private IncomingOrderLine getMatchingLine(IncomingOrder order, SupplierQuote supplierResponse)

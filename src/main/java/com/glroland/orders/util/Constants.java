@@ -9,7 +9,7 @@ public class Constants
         public static final String INVALID = "INVALID";
         public static final String FRAUD = "FRAUD";
         public static final String READY = "READY";
-
+        public static final String ERROR = "ERROR";
     }
 
     public static class SupplierTypes
@@ -23,5 +23,7 @@ public class Constants
     public static class SupplierRequestStatus
     {
         public static final String NEW = "NEW";
+        public static final String ERROR = "ERROR";
+        public static final String APPROVED = "APPROVED";
     }
 }

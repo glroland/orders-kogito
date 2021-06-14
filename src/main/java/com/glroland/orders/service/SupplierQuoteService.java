@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.glroland.orders.dto.SupplierQuote;
+import com.glroland.orders.util.Constants;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,6 +23,7 @@ public class SupplierQuoteService {
         if (supplierQuote.getQuantity() == null)
         {
             String msg = "Quantity for incoming supplier quote is null.  Cannot quote product sale.";
+            supplierQuote.setStatus(Constants.SupplierRequestStatus.ERROR);
             log.error(msg);
             throw new RuntimeException(msg);
         }
@@ -46,6 +48,7 @@ public class SupplierQuoteService {
         if (supplierQuote.getSubtotalCost() == null)
         {
             String msg = "Subtotal Cost for supplier quote is null.  Cannot calculate tax.";
+            supplierQuote.setStatus(Constants.SupplierRequestStatus.ERROR);
             log.error(msg);
             throw new RuntimeException(msg);
         }
@@ -65,6 +68,7 @@ public class SupplierQuoteService {
         if (supplierQuote.getQuantity() == null)
         {
             String msg = "Quantity for incoming supplier quote is null";
+            supplierQuote.setStatus(Constants.SupplierRequestStatus.ERROR);
             log.error(msg);
             throw new RuntimeException(msg);
         }
@@ -129,5 +133,7 @@ public class SupplierQuoteService {
 
         double total = subtotal + tax + shipping;
         supplierQuote.setTotalCost(roundPennies(total));
+
+        supplierQuote.setStatus(Constants.SupplierRequestStatus.APPROVED);
     }
 }

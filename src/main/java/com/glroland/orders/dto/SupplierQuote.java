@@ -18,6 +18,7 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     private Double tax;
     private Date dateQuoted;
     private Date estimatedShipDate;
+    private String status;
 
     public Long getOrderNumber() {
         return orderNumber;
@@ -90,6 +91,12 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     }
     public void setEstimatedShipDate(Date estimatedShipDate) {
         this.estimatedShipDate = estimatedShipDate;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
