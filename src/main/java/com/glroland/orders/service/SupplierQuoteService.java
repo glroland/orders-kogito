@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.glroland.orders.dto.SupplierQuote;
+import java.util.Calendar;
+import java.util.Date;
 
 @Component
 public class SupplierQuoteService {
@@ -29,6 +31,8 @@ public class SupplierQuoteService {
 
         double subtotal = costPerUnit * supplierQuote.getQuantity();
         supplierQuote.setSubtotalCost(subtotal);
+
+        supplierQuote.setDateQuoted(new Date());
     }
 
     public void calculateTax(SupplierQuote supplierQuote)
@@ -75,5 +79,55 @@ public class SupplierQuoteService {
     private double roundPennies(double amount)
     {
         return Math.round(amount * 100.0) / 100.0;
+    }
+
+    public void estimateShipDate(SupplierQuote supplierQuote)
+    {
+        if (supplierQuote == null)
+        {
+            String msg = "Incoming supplierQuote is null";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+
+        int rand = (int)(Math.random() * 5.0);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        cal.add(Calendar.DATE, rand);
+        supplierQuote.setEstimatedShipDate(cal.getTime());
+    }
+
+    public void finalizeQuote(SupplierQuote supplierQuote)
+    {
+        if (supplierQuote == null)
+        {
+            String msg = "Incoming supplierQuote is null.  Cannot finalize supplier quote.";
+            log.error(msg);
+            throw new RuntimeException(msg);
+        }
+
+        double subtotal = 0;
+        if (supplierQuote.getSubtotalCost() != null)
+        {
+            subtotal = supplierQuote.getSubtotalCost();
+        }
+
+        double tax = 0;
+        if (supplierQuote.getTax() != null)
+        {
+            tax = supplierQuote.getTax();
+        }
+
+        double shipping = 0;
+        if (supplierQuote.getShipping() != null)
+        {
+            shipping = supplierQuote.getShipping();
+        }
+
+        double total = subtotal + tax + shipping;
+        supplierQuote.setTotalCost(roundPennies(total));
     }
 }

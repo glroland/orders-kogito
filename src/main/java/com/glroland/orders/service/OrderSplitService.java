@@ -46,7 +46,6 @@ public class OrderSplitService
                     request.setSupplierType(supplierType);
                     request.setSku(line.getSku());
                     request.setQuantity(line.getQuantity());
-                    request.setStatus(Constants.SupplierRequestStatus.NEW);
 
                     requestList.add(request);
                 }

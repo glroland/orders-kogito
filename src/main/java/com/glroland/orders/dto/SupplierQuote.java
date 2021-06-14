@@ -16,14 +16,8 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     private Double totalCost;
     private Double shipping;
     private Double tax;
-    private String fulfillmentDate;
-    private String paymentMethod;
-    private String supplierId;
     private Date dateQuoted;
-
-    private String status;
-    private String fulfillmentPartner;
-    private String fulfillmentOrderNumber;
+    private Date estimatedShipDate;
 
     public Long getOrderNumber() {
         return orderNumber;
@@ -73,47 +67,11 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     public void setShipping(Double shipping) {
         this.shipping = shipping;
     }
-    public String getFulfillmentDate() {
-        return fulfillmentDate;
-    }
-    public void setFulfillmentDate(String fulfillmentDate) {
-        this.fulfillmentDate = fulfillmentDate;
-    }
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-    public String getSupplierId() {
-        return supplierId;
-    }
-    public void setSupplierId(String supplierId) {
-        this.supplierId = supplierId;
-    }
     public Date getDateQuoted() {
         return dateQuoted;
     }
     public void setDateQuoted(Date dateQuoted) {
         this.dateQuoted = dateQuoted;
-    }
-    public String getStatus() {
-        return status;
-    }
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    public String getFulfillmentPartner() {
-        return fulfillmentPartner;
-    }
-    public void setFulfillmentPartner(String fulfillmentPartner) {
-        this.fulfillmentPartner = fulfillmentPartner;
-    }
-    public String getFulfillmentOrderNumber() {
-        return fulfillmentOrderNumber;
-    }
-    public void setFulfillmentOrderNumber(String fulfillmentOrderNumber) {
-        this.fulfillmentOrderNumber = fulfillmentOrderNumber;
     }
     public Double getTax() {
         return tax;
@@ -126,6 +84,12 @@ public class SupplierQuote extends BaseDTO implements java.io.Serializable
     }
     public void setSubtotalCost(Double subtotalCost) {
         this.subtotalCost = subtotalCost;
+    }
+    public Date getEstimatedShipDate() {
+        return estimatedShipDate;
+    }
+    public void setEstimatedShipDate(Date estimatedShipDate) {
+        this.estimatedShipDate = estimatedShipDate;
     }
 
 }
