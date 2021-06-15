@@ -1,4 +1,4 @@
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_PQQB8K-YEDmuyZ_mgaGcHw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_ssE74K-aEDmDjrsMAkXLXw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_orderItem" structureRef="com.glroland.orders.dto.IncomingOrder"/>
   <bpmn2:itemDefinition id="_supplierRequestListItem" structureRef="java.util.List"/>
   <bpmn2:itemDefinition id="_supplierSuccessFlagItem" structureRef="Boolean"/>
@@ -9,10 +9,11 @@
   <bpmn2:itemDefinition id="__6351B034-D0CB-4D67-931E-F40706E34504_orderInputXItem" structureRef="com.glroland.orders.dto.IncomingOrder"/>
   <bpmn2:itemDefinition id="__6351B034-D0CB-4D67-931E-F40706E34504_responseOutputXItem" structureRef="Object"/>
   <bpmn2:itemDefinition id="__277D70B3-07C5-4EBD-92AF-8A49A0C580ED_supplierRequestListInputXItem" structureRef="Object"/>
-  <bpmn2:itemDefinition id="_277D70B3-07C5-4EBD-92AF-8A49A0C580ED_multiInstanceItemType_supplierRequest" structureRef="Object"/>
+  <bpmn2:itemDefinition id="_277D70B3-07C5-4EBD-92AF-8A49A0C580ED_multiInstanceItemType_supplierRequest" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:itemDefinition id="__C89A1D6B-0FCC-4B1E-A91F-000D9D4D9A40_orderInputXItem" structureRef="com.glroland.orders.dto.IncomingOrder"/>
   <bpmn2:itemDefinition id="__C89A1D6B-0FCC-4B1E-A91F-000D9D4D9A40_supplierRequestsInputXItem" structureRef="java.util.List"/>
   <bpmn2:itemDefinition id="__C89A1D6B-0FCC-4B1E-A91F-000D9D4D9A40_ResponseOutputXItem" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="_79DC22DF-D14B-4572-A694-228F55901E49_multiInstanceItemType_supplierRequest" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:interface id="_666A249A-B5AE-491E-8402-6AAE4C43529F_ServiceInterface" name="com.glroland.orders.service.CalculationService" implementationRef="com.glroland.orders.service.CalculationService">
     <bpmn2:operation id="_666A249A-B5AE-491E-8402-6AAE4C43529F_ServiceOperation" name="calculateTotal" implementationRef="calculateTotal"/>
   </bpmn2:interface>
@@ -31,6 +32,13 @@
     <bpmn2:property id="order" itemSubjectRef="_orderItem" name="order"/>
     <bpmn2:property id="supplierRequestList" itemSubjectRef="_supplierRequestListItem" name="supplierRequestList"/>
     <bpmn2:property id="supplierSuccessFlag" itemSubjectRef="_supplierSuccessFlagItem" name="supplierSuccessFlag"/>
+    <bpmn2:sequenceFlow id="_5BC414F5-DFFE-4FDA-84B8-71B1B051E6F8" sourceRef="_79DC22DF-D14B-4572-A694-228F55901E49" targetRef="_231F4F97-6969-4420-9843-83F2BC135D34">
+      <bpmn2:extensionElements>
+        <drools:metaData name="isAutoConnection.target">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_2B8F8D03-5647-4DD1-8EA9-441B7B78C222" sourceRef="_BC434C79-44F0-4CE8-9687-A97F4CAFB938" targetRef="_BEC8BEC4-292D-430B-8F84-42AF0CAAF96C">
       <bpmn2:extensionElements>
         <drools:metaData name="isAutoConnection.source">
@@ -67,7 +75,7 @@
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_6901B51A-85E8-40DE-AA1F-1913287AA237" sourceRef="_6351B034-D0CB-4D67-931E-F40706E34504" targetRef="_277D70B3-07C5-4EBD-92AF-8A49A0C580ED"/>
-    <bpmn2:sequenceFlow id="_5BC414F5-DFFE-4FDA-84B8-71B1B051E6F8" sourceRef="_666A249A-B5AE-491E-8402-6AAE4C43529F" targetRef="_231F4F97-6969-4420-9843-83F2BC135D34">
+    <bpmn2:sequenceFlow id="_4D921179-FA36-4B8A-A3AE-06E24E14E694" sourceRef="_666A249A-B5AE-491E-8402-6AAE4C43529F" targetRef="_79DC22DF-D14B-4572-A694-228F55901E49">
       <bpmn2:extensionElements>
         <drools:metaData name="isAutoConnection.source">
           <drools:metaValue><![CDATA[true]]></drools:metaValue>
@@ -89,14 +97,6 @@
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return com.glroland.orders.util.Constants.IncomingOrderStatus.READY.equals(order.getOrderStatus());]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_4CE8D572-8C59-44A3-9DB3-ED3499C0F4D1" sourceRef="_4E33EEB6-32C7-4951-A0E8-B84B4C83BF0B" targetRef="_4A0A4017-9555-4256-9603-1A3EFC919F74"/>
-    <bpmn2:sequenceFlow id="_F3D9EB5E-A9D8-459E-A6A2-21C8287205D1" name="No" sourceRef="_2A530F2D-717E-4623-BE6A-1CAD44747A90" targetRef="_4E33EEB6-32C7-4951-A0E8-B84B4C83BF0B">
-      <bpmn2:extensionElements>
-        <drools:metaData name="elementname">
-          <drools:metaValue><![CDATA[No]]></drools:metaValue>
-        </drools:metaData>
-      </bpmn2:extensionElements>
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return !com.glroland.orders.util.Constants.IncomingOrderStatus.NEW.equals(order.getOrderStatus());]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_63D2AD31-6DEA-4A09-AEF2-1D89D9B8496F" name="Yes" sourceRef="_2A530F2D-717E-4623-BE6A-1CAD44747A90" targetRef="_6351B034-D0CB-4D67-931E-F40706E34504">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -104,6 +104,14 @@
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return com.glroland.orders.util.Constants.IncomingOrderStatus.NEW.equals(order.getOrderStatus());]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_F3D9EB5E-A9D8-459E-A6A2-21C8287205D1" name="No" sourceRef="_2A530F2D-717E-4623-BE6A-1CAD44747A90" targetRef="_4E33EEB6-32C7-4951-A0E8-B84B4C83BF0B">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[No]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" language="http://www.java.com/java"><![CDATA[return !com.glroland.orders.util.Constants.IncomingOrderStatus.NEW.equals(order.getOrderStatus());]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_5FEDAAFD-140E-49FF-AEFC-DA43E6196FD2" sourceRef="_585D00DE-E418-4DB5-9785-DFE237019A61" targetRef="_2A530F2D-717E-4623-BE6A-1CAD44747A90">
       <bpmn2:extensionElements>
@@ -127,6 +135,36 @@
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_B7B4282B-F317-4BF9-95E9-962B046EE815" sourceRef="_B44545AB-8B78-4FE4-B6B9-1D467954C070" targetRef="_0617D7DF-047A-4EC4-85E7-E201D640F4F5"/>
+    <bpmn2:callActivity id="_79DC22DF-D14B-4572-A694-228F55901E49" drools:independent="false" drools:waitForCompletion="true" name="Order Fulfillment Process" calledElement="process.fulfillment">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Order Fulfillment Process]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_4D921179-FA36-4B8A-A3AE-06E24E14E694</bpmn2:incoming>
+      <bpmn2:outgoing>_5BC414F5-DFFE-4FDA-84B8-71B1B051E6F8</bpmn2:outgoing>
+      <bpmn2:ioSpecification>
+        <bpmn2:dataInput id="_79DC22DF-D14B-4572-A694-228F55901E49_IN_COLLECTIONInputX" itemSubjectRef="_supplierRequestListItem" name="IN_COLLECTION"/>
+        <bpmn2:dataInput id="_79DC22DF-D14B-4572-A694-228F55901E49_supplierRequestInputX" itemSubjectRef="_79DC22DF-D14B-4572-A694-228F55901E49_multiInstanceItemType_supplierRequest" name="supplierRequest"/>
+        <bpmn2:inputSet>
+          <bpmn2:dataInputRefs>_79DC22DF-D14B-4572-A694-228F55901E49_IN_COLLECTIONInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_79DC22DF-D14B-4572-A694-228F55901E49_supplierRequestInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>supplierRequestList</bpmn2:sourceRef>
+        <bpmn2:targetRef>_79DC22DF-D14B-4572-A694-228F55901E49_IN_COLLECTIONInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation>
+        <bpmn2:sourceRef>supplierRequest</bpmn2:sourceRef>
+        <bpmn2:targetRef>_79DC22DF-D14B-4572-A694-228F55901E49_supplierRequestInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:multiInstanceLoopCharacteristics>
+        <bpmn2:loopDataInputRef>_79DC22DF-D14B-4572-A694-228F55901E49_IN_COLLECTIONInputX</bpmn2:loopDataInputRef>
+        <bpmn2:inputDataItem id="supplierRequest" itemSubjectRef="_79DC22DF-D14B-4572-A694-228F55901E49_multiInstanceItemType_supplierRequest" name="supplierRequest"/>
+      </bpmn2:multiInstanceLoopCharacteristics>
+    </bpmn2:callActivity>
     <bpmn2:callActivity id="_231F4F97-6969-4420-9843-83F2BC135D34" drools:independent="false" drools:waitForCompletion="true" name="Comms Process" calledElement="process.comms">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -261,7 +299,7 @@
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_4CBC5289-D339-4A2D-BAFC-61DCCB6ADBEF</bpmn2:incoming>
-      <bpmn2:outgoing>_5BC414F5-DFFE-4FDA-84B8-71B1B051E6F8</bpmn2:outgoing>
+      <bpmn2:outgoing>_4D921179-FA36-4B8A-A3AE-06E24E14E694</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_666A249A-B5AE-491E-8402-6AAE4C43529F_ParameterInputX" drools:dtype="com.glroland.orders.dto.IncomingOrder" itemSubjectRef="__666A249A-B5AE-491E-8402-6AAE4C43529F_ParameterInputXItem" name="Parameter"/>
         <bpmn2:dataOutput id="_666A249A-B5AE-491E-8402-6AAE4C43529F_ResultOutputX" drools:dtype="com.glroland.orders.dto.IncomingOrder" itemSubjectRef="__666A249A-B5AE-491E-8402-6AAE4C43529F_ResultOutputXItem" name="Result"/>
@@ -300,8 +338,8 @@
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_5FEDAAFD-140E-49FF-AEFC-DA43E6196FD2</bpmn2:incoming>
-      <bpmn2:outgoing>_63D2AD31-6DEA-4A09-AEF2-1D89D9B8496F</bpmn2:outgoing>
       <bpmn2:outgoing>_F3D9EB5E-A9D8-459E-A6A2-21C8287205D1</bpmn2:outgoing>
+      <bpmn2:outgoing>_63D2AD31-6DEA-4A09-AEF2-1D89D9B8496F</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:callActivity id="_585D00DE-E418-4DB5-9785-DFE237019A61" drools:independent="false" drools:waitForCompletion="true" name="Prepare Order" calledElement="process.incomingOrder_prepare">
       <bpmn2:extensionElements>
@@ -356,7 +394,7 @@ order.setOrderStatus(com.glroland.orders.util.Constants.IncomingOrderStatus.NEW)
         <dc:Bounds height="56" width="56" x="100" y="100"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__2D876EF2-93F4-4CBE-959A-04EF7BFA9CED" bpmnElement="_2D876EF2-93F4-4CBE-959A-04EF7BFA9CED">
-        <dc:Bounds height="56" width="56" x="1109" y="613"/>
+        <dc:Bounds height="56" width="56" x="955" y="613"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__0617D7DF-047A-4EC4-85E7-E201D640F4F5" bpmnElement="_0617D7DF-047A-4EC4-85E7-E201D640F4F5">
         <dc:Bounds height="102" width="154" x="236" y="77"/>
@@ -395,15 +433,18 @@ order.setOrderStatus(com.glroland.orders.util.Constants.IncomingOrderStatus.NEW)
         <dc:Bounds height="56" width="56" x="1314" y="380.5"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__231F4F97-6969-4420-9843-83F2BC135D34" bpmnElement="_231F4F97-6969-4420-9843-83F2BC135D34">
-        <dc:Bounds height="101" width="153" x="886" y="590"/>
+        <dc:Bounds height="101" width="153" x="730.5" y="590"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__79DC22DF-D14B-4572-A694-228F55901E49" bpmnElement="_79DC22DF-D14B-4572-A694-228F55901E49">
+        <dc:Bounds height="101" width="153" x="489" y="590"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_shape__B44545AB-8B78-4FE4-B6B9-1D467954C070_to_shape__0617D7DF-047A-4EC4-85E7-E201D640F4F5" bpmnElement="_B7B4282B-F317-4BF9-95E9-962B046EE815">
         <di:waypoint x="156" y="128"/>
         <di:waypoint x="236" y="128"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__231F4F97-6969-4420-9843-83F2BC135D34_to_shape__2D876EF2-93F4-4CBE-959A-04EF7BFA9CED" bpmnElement="_0FD01DAC-34EA-476A-B8BA-8128BE161AC5">
-        <di:waypoint x="1039" y="640.5"/>
-        <di:waypoint x="1109" y="641"/>
+        <di:waypoint x="883.5" y="640.5"/>
+        <di:waypoint x="955" y="641"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__0617D7DF-047A-4EC4-85E7-E201D640F4F5_to_shape__585D00DE-E418-4DB5-9785-DFE237019A61" bpmnElement="_94213E2B-7703-4265-8315-EA2693E48ED7">
         <di:waypoint x="313" y="179"/>
@@ -413,15 +454,15 @@ order.setOrderStatus(com.glroland.orders.util.Constants.IncomingOrderStatus.NEW)
         <di:waypoint x="561.5" y="128.5"/>
         <di:waypoint x="778" y="129"/>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__2A530F2D-717E-4623-BE6A-1CAD44747A90_to_shape__4E33EEB6-32C7-4951-A0E8-B84B4C83BF0B" bpmnElement="_F3D9EB5E-A9D8-459E-A6A2-21C8287205D1">
+        <di:waypoint x="806" y="129"/>
+        <di:waypoint x="976" y="129"/>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__2A530F2D-717E-4623-BE6A-1CAD44747A90_to_shape__6351B034-D0CB-4D67-931E-F40706E34504" bpmnElement="_63D2AD31-6DEA-4A09-AEF2-1D89D9B8496F">
         <di:waypoint x="806" y="129"/>
         <di:waypoint x="806.0002482696663" y="245.7142857142857"/>
         <di:waypoint x="313" y="245.7142857142857"/>
         <di:waypoint x="313" y="356"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__2A530F2D-717E-4623-BE6A-1CAD44747A90_to_shape__4E33EEB6-32C7-4951-A0E8-B84B4C83BF0B" bpmnElement="_F3D9EB5E-A9D8-459E-A6A2-21C8287205D1">
-        <di:waypoint x="806" y="129"/>
-        <di:waypoint x="976" y="129"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__4E33EEB6-32C7-4951-A0E8-B84B4C83BF0B_to_shape__4A0A4017-9555-4256-9603-1A3EFC919F74" bpmnElement="_4CE8D572-8C59-44A3-9DB3-ED3499C0F4D1">
         <di:waypoint x="1052.5" y="129"/>
@@ -433,9 +474,9 @@ order.setOrderStatus(com.glroland.orders.util.Constants.IncomingOrderStatus.NEW)
         <di:waypoint x="317" y="528"/>
         <di:waypoint x="317" y="590"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__666A249A-B5AE-491E-8402-6AAE4C43529F_to_shape__231F4F97-6969-4420-9843-83F2BC135D34" bpmnElement="_5BC414F5-DFFE-4FDA-84B8-71B1B051E6F8">
+      <bpmndi:BPMNEdge id="edge_shape__666A249A-B5AE-491E-8402-6AAE4C43529F_to_shape__79DC22DF-D14B-4572-A694-228F55901E49" bpmnElement="_4D921179-FA36-4B8A-A3AE-06E24E14E694">
         <di:waypoint x="317" y="692"/>
-        <di:waypoint x="962.5" y="590"/>
+        <di:waypoint x="565.5" y="590"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__6351B034-D0CB-4D67-931E-F40706E34504_to_shape__277D70B3-07C5-4EBD-92AF-8A49A0C580ED" bpmnElement="_6901B51A-85E8-40DE-AA1F-1913287AA237">
         <di:waypoint x="313" y="407"/>
@@ -456,6 +497,10 @@ order.setOrderStatus(com.glroland.orders.util.Constants.IncomingOrderStatus.NEW)
       <bpmndi:BPMNEdge id="edge_shape__BC434C79-44F0-4CE8-9687-A97F4CAFB938_to_shape__BEC8BEC4-292D-430B-8F84-42AF0CAAF96C" bpmnElement="_2B8F8D03-5647-4DD1-8EA9-441B7B78C222">
         <di:waypoint x="1234" y="408.5"/>
         <di:waypoint x="1314" y="408.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__79DC22DF-D14B-4572-A694-228F55901E49_to_shape__231F4F97-6969-4420-9843-83F2BC135D34" bpmnElement="_5BC414F5-DFFE-4FDA-84B8-71B1B051E6F8">
+        <di:waypoint x="642" y="640.5"/>
+        <di:waypoint x="807" y="590"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
@@ -651,10 +696,30 @@ order.setOrderStatus(com.glroland.orders.util.Constants.IncomingOrderStatus.NEW)
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_79DC22DF-D14B-4572-A694-228F55901E49">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_PQQB8K-YEDmuyZ_mgaGcHw</bpmn2:source>
-    <bpmn2:target>_PQQB8K-YEDmuyZ_mgaGcHw</bpmn2:target>
+    <bpmn2:source>_ssE74K-aEDmDjrsMAkXLXw</bpmn2:source>
+    <bpmn2:target>_ssE74K-aEDmDjrsMAkXLXw</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
