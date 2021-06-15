@@ -1,0 +1,9 @@
+apiVersion: app.kiegroup.org/v1beta1
+kind: KogitoBuild
+metadata:
+  name: orders-kogito
+spec:
+  gitSource:
+    uri: 'https://github.com/glroland/orders-kogito.git'
+  runtime: quarkus
+  type: RemoteSource

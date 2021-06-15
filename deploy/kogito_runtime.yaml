@@ -1,0 +1,15 @@
+apiVersion: app.kiegroup.org/v1beta1
+kind: KogitoRuntime
+metadata:
+  name: orders-kogito
+  finalizers:
+    - delete.kogitoInfra.ownership.finalizer
+spec:
+  monitoring: {}
+  probes:
+    livenessProbe: {}
+    readinessProbe: {}
+    startupProbe: {}
+  replicas: 1
+  resources: {}
+  runtime: quarkus
