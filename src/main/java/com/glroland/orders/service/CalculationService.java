@@ -16,11 +16,13 @@
 package com.glroland.orders.service;
 
 import java.util.Random;
-import org.springframework.stereotype.Component;
+
+import javax.enterprise.context.ApplicationScoped;
+
 import com.glroland.orders.dto.IncomingOrder;
 import com.glroland.orders.dto.IncomingOrderLine;
 
-@Component
+@ApplicationScoped
 public class CalculationService {
 
     private Random random = new Random();

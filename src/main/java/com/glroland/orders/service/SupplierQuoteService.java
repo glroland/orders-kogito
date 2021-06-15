@@ -1,6 +1,5 @@
 package com.glroland.orders.service;
 
-import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.glroland.orders.dto.SupplierQuote;
@@ -8,7 +7,9 @@ import com.glroland.orders.util.Constants;
 import java.util.Calendar;
 import java.util.Date;
 
-@Component
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class SupplierQuoteService {
     private static final Logger log = LoggerFactory.getLogger(SupplierQuoteService.class);
 

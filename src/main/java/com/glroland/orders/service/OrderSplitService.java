@@ -1,10 +1,12 @@
 package com.glroland.orders.service;
 
 import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.glroland.orders.dto.IncomingOrder;
 import com.glroland.orders.dto.IncomingOrderLine;
 import com.glroland.orders.dto.SupplierQuote;
@@ -13,12 +15,12 @@ import com.glroland.orders.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component
+@ApplicationScoped
 public class OrderSplitService 
 {
     private static final Logger log = LoggerFactory.getLogger(OrderSplitService.class);
 
-    @Autowired
+    @Inject
     private ProductService productService;
 
     public List<SupplierQuote> splitForSupplier(IncomingOrder order) 

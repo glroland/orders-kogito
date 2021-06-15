@@ -15,11 +15,14 @@
  */
 package com.glroland.orders.service;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import com.glroland.orders.dto.Person;
 import org.kie.kogito.rules.DataSource;
 import org.kie.kogito.rules.DataStore;
 import org.kie.kogito.rules.RuleUnitData;
 
+@ApplicationScoped
 public class PersonValidationService implements RuleUnitData {
     private DataStore<Person> persons = DataSource.createStore();
 
