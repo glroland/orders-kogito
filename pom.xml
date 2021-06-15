@@ -22,7 +22,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <version.kogito>1.6.0.Final</version.kogito>
+    <version.kogito>1.7.0.Final</version.kogito>
     <version.org.optaplanner>8.6.0.Final</version.org.optaplanner>
     <version.spring.framework>2.7.1</version.spring.framework>
     <version.spring.openapi>1.5.9</version.spring.openapi>
