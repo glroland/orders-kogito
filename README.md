@@ -8,6 +8,9 @@ Install Kafka
 - kafka_2.13-2.8.0 % bin/zookeeper-server-start.sh config/zookeeper.properties
 - Edit server.properties to enable PLAIN 9092
 - kafka_2.13-2.8.0 % bin/kafka-server-start.sh config/server.properties
+- Create inbound and outbound topics (optional - kogito seems to do this automatically when allowed to)
+- kafka_2.13-2.8.0 % bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic orders_kogito_inbound --create
+- kafka_2.13-2.8.0 % bin/kafka-topics.sh --bootstrap-server localhost:9092 --topic orders_kogito_outbound --create
 
 # Build and run locally
 mvn clean compile quarkus:dev
