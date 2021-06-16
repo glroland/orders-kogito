@@ -15,7 +15,7 @@
  */
 package com.glroland.orders.dto;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class IncomingOrder extends BaseDTO implements java.io.Serializable {
@@ -24,7 +24,7 @@ public class IncomingOrder extends BaseDTO implements java.io.Serializable {
 
     private Date orderDate;
     private Long orderNumber;
-    private List<IncomingOrderLine> orderLines;
+    private ArrayList<IncomingOrderLine> orderLines;
     private String orderStatus;
     private Double total;
 
@@ -47,11 +47,11 @@ public class IncomingOrder extends BaseDTO implements java.io.Serializable {
         this.orderNumber = orderNumber;
     }
 
-    public List<IncomingOrderLine> getOrderLines() {
+    public ArrayList<IncomingOrderLine> getOrderLines() {
         return orderLines;
     }
 
-    public void setOrderLines(List<IncomingOrderLine> orderLines) {
+    public void setOrderLines(ArrayList<IncomingOrderLine> orderLines) {
         this.orderLines = orderLines;
     }
 

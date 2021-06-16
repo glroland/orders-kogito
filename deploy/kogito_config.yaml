@@ -1,0 +1,23 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: kogito-config
+data:
+  application.properties: >+
+    # Kogito
+    kogito.events.processinstances.enabled = enabled
+    kogito.events.usertasks.enabled = enabled
+    kogito.messaging.as-cloudevents = true
+    kogito.service.url = http://orders-kogito
+    kogito.jobs-service.url = http://kogito-jobs
+
+    # Infinispan
+    quarkus.infinispan-client.server-list = kogito-infinispan:11222
+    quarkus.infinispan-client.auth-username = developer
+    quarkus.infinispan-client.auth-password = UfEFaG3847jlLkdn
+    kogito.persistence.infinispan.template = kogito-infinispan
+
+    # Kafka
+    mp.messaging.incoming.kogito_incoming_stream.connector=smallrye-kafka
+    mp.messaging.outgoing.kogito-job-service-job-status-events.bootstrap.servers = my-cluster-kafka-bootstrap:9092
+    mp.messaging.outgoing.kogito-job-service-job-status-events.topic = kogito-jobs-events
