@@ -30,3 +30,6 @@ curl -X POST http://orders-kogito-rhi.apps.ocp4.home.glroland.com/incomingOrder 
 # Indexer run locally
 java  -Dquarkus.infinispan-client.auth-username=developer -Dquarkus.infinispan-client.auth-password=password1 -jar data-index-service-infinispan-1.7.0.Final-runner.jar
 
+# Management Console run locally
+java -Dquarkus.http.port=8280 -jar management-console-1.7.0.Final-runner.jar
+http://localhost:8280/ProcessInstances/
