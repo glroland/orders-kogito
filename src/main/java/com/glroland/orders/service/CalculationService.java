@@ -15,38 +15,22 @@
  */
 package com.glroland.orders.service;
 
-import java.util.Random;
-
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import com.glroland.orders.dto.IncomingOrder;
-import com.glroland.orders.dto.IncomingOrderLine;
+import com.glroland.orders.gateway.CalculationGateway;
+
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 @ApplicationScoped
 public class CalculationService {
 
-    private Random random = new Random();
+    @Inject
+    @RestClient
+    private CalculationGateway calculationGateway;
 
     public IncomingOrder calculateTotal(IncomingOrder order) {
-        double runningTotal = 0;
-
-        if (order.getOrderLines() != null)
-        {
-            for (IncomingOrderLine line : order.getOrderLines()) 
-            {
-                if ((line.getUnitPrice() != null) && (line.getQuantity() != null))
-                {
-                    double unitPrice = line.getUnitPrice();
-                    int quantity = line.getQuantity();
-
-                    double lineTotal = unitPrice * quantity;
-                    runningTotal += lineTotal;
-                }
-            }            
-        }
-
-        order.setTotal(runningTotal);
-
-        return order;
+        return calculationGateway.calculateTotal(order);
     }
 }

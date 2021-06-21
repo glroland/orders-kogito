@@ -11,7 +11,9 @@ import com.glroland.orders.dto.IncomingOrder;
 import com.glroland.orders.dto.IncomingOrderLine;
 import com.glroland.orders.dto.SupplierQuote;
 import com.glroland.orders.util.Constants;
+import com.glroland.orders.gateway.OrderSplitGateway;
 
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,44 +23,18 @@ public class OrderSplitService
     private static final Logger log = LoggerFactory.getLogger(OrderSplitService.class);
 
     @Inject
-    private ProductService productService;
+    @RestClient
+    private OrderSplitGateway orderSplitGateway;
 
     public List<SupplierQuote> splitForSupplier(IncomingOrder order) 
     {
-        if (order == null)
-        {
-            String msg = "Inbound order is null";
-            log.error(msg);
-            throw new RuntimeException(msg);
-        }
-
-        ArrayList<SupplierQuote> requestList = new ArrayList<SupplierQuote>();
-
-        if (order != null)
-        {
-            if (order.getOrderLines() != null)
-            {
-                for (IncomingOrderLine line : order.getOrderLines())
-                {
-                    String supplierType = productService.getSupplierTypeForProduct(line.getSku());
-                    
-                    SupplierQuote request = new SupplierQuote();
-                    request.setOrderNumber(order.getOrderNumber());
-                    request.setLineNumber(line.getLineNumber());
-                    request.setSupplierType(supplierType);
-                    request.setSku(line.getSku());
-                    request.setQuantity(line.getQuantity());
-
-                    requestList.add(request);
-                }
-            }
-        }
-
-        return requestList;
+        return orderSplitGateway.splitForSupplier(order);
     }
 
-    public boolean joinSupplierQuotes(IncomingOrder order, List supplierRequestsIn)
+    public boolean joinSupplierQuotes(IncomingOrder order, List<SupplierQuote> supplierRequestsIn)
     {
+//        return orderSplitGateway.joinSupplierQuotes(order, supplierRequestsIn);
+
         if (order == null)
         {
             String msg = "Incoming order is null";
