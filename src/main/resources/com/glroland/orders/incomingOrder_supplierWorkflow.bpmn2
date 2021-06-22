@@ -1,10 +1,15 @@
-<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_-CXS8LDyEDmGwbxLok6mZQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_aF1goLUYEDmp_PcFwzfvnQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
   <bpmn2:itemDefinition id="_supplierRequestItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:itemDefinition id="__E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_supplierQuoteInputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
+  <bpmn2:itemDefinition id="__E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ResponseOutputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:itemDefinition id="__AF581AC8-D808-4D8E-B938-57EB184F60D4_supplierQuoteInputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
+  <bpmn2:itemDefinition id="__AF581AC8-D808-4D8E-B938-57EB184F60D4_ResponseOutputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:itemDefinition id="__8655CD46-40D2-4802-9E4A-619F72E68D12_supplierQuoteInputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
+  <bpmn2:itemDefinition id="__8655CD46-40D2-4802-9E4A-619F72E68D12_ResultOutputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:itemDefinition id="__9012F30E-A4FA-48D9-808F-755473A38296_supplierQuoteInputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
+  <bpmn2:itemDefinition id="__9012F30E-A4FA-48D9-808F-755473A38296_ResponseOutputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:itemDefinition id="__EFF760E1-219C-4D5D-B9EC-67171CD93C6B_supplierQuoteInputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
+  <bpmn2:itemDefinition id="__EFF760E1-219C-4D5D-B9EC-67171CD93C6B_ResponseOutputXItem" structureRef="com.glroland.orders.dto.SupplierQuote"/>
   <bpmn2:interface id="_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ServiceInterface" name="com.glroland.orders.service.SupplierQuoteService" implementationRef="com.glroland.orders.service.SupplierQuoteService">
     <bpmn2:operation id="_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ServiceOperation" name="calculateShipping" implementationRef="calculateShipping"/>
   </bpmn2:interface>
@@ -84,14 +89,22 @@
       <bpmn2:outgoing>_EC2709CC-C79B-40CE-A90C-81EE37D9D385</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_EFF760E1-219C-4D5D-B9EC-67171CD93C6B_supplierQuoteInputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__EFF760E1-219C-4D5D-B9EC-67171CD93C6B_supplierQuoteInputXItem" name="supplierQuote"/>
+        <bpmn2:dataOutput id="_EFF760E1-219C-4D5D-B9EC-67171CD93C6B_ResponseOutputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__EFF760E1-219C-4D5D-B9EC-67171CD93C6B_ResponseOutputXItem" name="Response"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_EFF760E1-219C-4D5D-B9EC-67171CD93C6B_supplierQuoteInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_EFF760E1-219C-4D5D-B9EC-67171CD93C6B_ResponseOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation>
         <bpmn2:sourceRef>supplierRequest</bpmn2:sourceRef>
         <bpmn2:targetRef>_EFF760E1-219C-4D5D-B9EC-67171CD93C6B_supplierQuoteInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_EFF760E1-219C-4D5D-B9EC-67171CD93C6B_ResponseOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>supplierRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
     </bpmn2:serviceTask>
     <bpmn2:serviceTask id="_9012F30E-A4FA-48D9-808F-755473A38296" drools:serviceimplementation="Java" drools:serviceinterface="com.glroland.orders.service.SupplierQuoteService" drools:serviceoperation="estimateShipDate" name="Estimate Shipping Date" implementation="Java" operationRef="_9012F30E-A4FA-48D9-808F-755473A38296_ServiceOperation">
       <bpmn2:extensionElements>
@@ -103,14 +116,22 @@
       <bpmn2:outgoing>_A268AD2B-AB86-4DB4-B8E8-8D5DFB170B2C</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_9012F30E-A4FA-48D9-808F-755473A38296_supplierQuoteInputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__9012F30E-A4FA-48D9-808F-755473A38296_supplierQuoteInputXItem" name="supplierQuote"/>
+        <bpmn2:dataOutput id="_9012F30E-A4FA-48D9-808F-755473A38296_ResponseOutputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__9012F30E-A4FA-48D9-808F-755473A38296_ResponseOutputXItem" name="Response"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_9012F30E-A4FA-48D9-808F-755473A38296_supplierQuoteInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_9012F30E-A4FA-48D9-808F-755473A38296_ResponseOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation>
         <bpmn2:sourceRef>supplierRequest</bpmn2:sourceRef>
         <bpmn2:targetRef>_9012F30E-A4FA-48D9-808F-755473A38296_supplierQuoteInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_9012F30E-A4FA-48D9-808F-755473A38296_ResponseOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>supplierRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
     </bpmn2:serviceTask>
     <bpmn2:serviceTask id="_8655CD46-40D2-4802-9E4A-619F72E68D12" drools:serviceimplementation="Java" drools:serviceinterface="com.glroland.orders.service.SupplierQuoteService" drools:serviceoperation="quoteProduct" name="Quote Product Sale" implementation="Java" operationRef="_8655CD46-40D2-4802-9E4A-619F72E68D12_ServiceOperation">
       <bpmn2:extensionElements>
@@ -122,14 +143,22 @@
       <bpmn2:outgoing>_AC23A8F7-5AD0-4465-A32D-A7519CDC7179</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_8655CD46-40D2-4802-9E4A-619F72E68D12_supplierQuoteInputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__8655CD46-40D2-4802-9E4A-619F72E68D12_supplierQuoteInputXItem" name="supplierQuote"/>
+        <bpmn2:dataOutput id="_8655CD46-40D2-4802-9E4A-619F72E68D12_ResultOutputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__8655CD46-40D2-4802-9E4A-619F72E68D12_ResultOutputXItem" name="Result"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_8655CD46-40D2-4802-9E4A-619F72E68D12_supplierQuoteInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_8655CD46-40D2-4802-9E4A-619F72E68D12_ResultOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation>
         <bpmn2:sourceRef>supplierRequest</bpmn2:sourceRef>
         <bpmn2:targetRef>_8655CD46-40D2-4802-9E4A-619F72E68D12_supplierQuoteInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_8655CD46-40D2-4802-9E4A-619F72E68D12_ResultOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>supplierRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
     </bpmn2:serviceTask>
     <bpmn2:serviceTask id="_AF581AC8-D808-4D8E-B938-57EB184F60D4" drools:serviceimplementation="Java" drools:serviceinterface="com.glroland.orders.service.SupplierQuoteService" drools:serviceoperation="calculateTax" name="Calculate Taxes" implementation="Java" operationRef="_AF581AC8-D808-4D8E-B938-57EB184F60D4_ServiceOperation">
       <bpmn2:extensionElements>
@@ -141,14 +170,22 @@
       <bpmn2:outgoing>_5F84C793-6676-4279-89B3-ED37865A4F42</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_AF581AC8-D808-4D8E-B938-57EB184F60D4_supplierQuoteInputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__AF581AC8-D808-4D8E-B938-57EB184F60D4_supplierQuoteInputXItem" name="supplierQuote"/>
+        <bpmn2:dataOutput id="_AF581AC8-D808-4D8E-B938-57EB184F60D4_ResponseOutputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__AF581AC8-D808-4D8E-B938-57EB184F60D4_ResponseOutputXItem" name="Response"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_AF581AC8-D808-4D8E-B938-57EB184F60D4_supplierQuoteInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_AF581AC8-D808-4D8E-B938-57EB184F60D4_ResponseOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation>
         <bpmn2:sourceRef>supplierRequest</bpmn2:sourceRef>
         <bpmn2:targetRef>_AF581AC8-D808-4D8E-B938-57EB184F60D4_supplierQuoteInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_AF581AC8-D808-4D8E-B938-57EB184F60D4_ResponseOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>supplierRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
     </bpmn2:serviceTask>
     <bpmn2:serviceTask id="_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA" drools:serviceimplementation="Java" drools:serviceinterface="com.glroland.orders.service.SupplierQuoteService" drools:serviceoperation="calculateShipping" name="Calculate Shipping Costs" implementation="Java" operationRef="_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ServiceOperation">
       <bpmn2:extensionElements>
@@ -160,14 +197,22 @@
       <bpmn2:outgoing>_A532C91A-D498-4A24-BDD4-911B4B893010</bpmn2:outgoing>
       <bpmn2:ioSpecification>
         <bpmn2:dataInput id="_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_supplierQuoteInputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_supplierQuoteInputXItem" name="supplierQuote"/>
+        <bpmn2:dataOutput id="_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ResponseOutputX" drools:dtype="com.glroland.orders.dto.SupplierQuote" itemSubjectRef="__E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ResponseOutputXItem" name="Response"/>
         <bpmn2:inputSet>
           <bpmn2:dataInputRefs>_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_supplierQuoteInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
+        <bpmn2:outputSet>
+          <bpmn2:dataOutputRefs>_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ResponseOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation>
         <bpmn2:sourceRef>supplierRequest</bpmn2:sourceRef>
         <bpmn2:targetRef>_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_supplierQuoteInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation>
+        <bpmn2:sourceRef>_E1619AC7-EC58-4EA4-BE0A-6AC33A495DDA_ResponseOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>supplierRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
     </bpmn2:serviceTask>
     <bpmn2:scriptTask id="_0C5A9A04-DE94-4BFE-AD4C-B18ACD10BF9E" name="Log Supplier Request and Simulate Latency" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
@@ -388,7 +433,7 @@ System.out.println("TIMER END");</bpmn2:script>
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_-CXS8LDyEDmGwbxLok6mZQ</bpmn2:source>
-    <bpmn2:target>_-CXS8LDyEDmGwbxLok6mZQ</bpmn2:target>
+    <bpmn2:source>_aF1goLUYEDmp_PcFwzfvnQ</bpmn2:source>
+    <bpmn2:target>_aF1goLUYEDmp_PcFwzfvnQ</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
