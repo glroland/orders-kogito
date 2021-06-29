@@ -26,11 +26,11 @@ components:
 - container:
     endpoints:
     - exposure: public
-      name: orders-kogito
+      name: web
       path: /
       protocol: http
       targetPort: 8080
-    image: quay.io/eclipse/che-quarkus:nightly
+    image: quay.io/eclipse/che-quarkus:latest
     memoryLimit: 1512Mi
     mountSources: true
     volumeMounts:
