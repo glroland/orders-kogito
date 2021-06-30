@@ -24,6 +24,12 @@ commands:
   id: dev-debug
 components:
 - container:
+    endpoints:
+    - exposure: public
+      name: web
+      path: /
+      protocol: http
+      targetPort: 8080
     image: quay.io/eclipse/che-quarkus:nightly
     memoryLimit: 1512Mi
     mountSources: true
